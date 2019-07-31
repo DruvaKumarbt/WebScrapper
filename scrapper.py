@@ -7,15 +7,15 @@ URL= 'https://www.amazon.in/Test-Exclusive-609/dp/B07HGJFVL2/ref=sr_1_3?keywords
 
 headers = {"User-Agent":'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36'}
 
-
-page = requests.get(URL,headers=headers)
-soup = BeautifulSoup(page.content,'html.parser') 
-title = soup.find(id="productTitle").get_text()
-print(title.strip())
-price = soup.find(id="priceblock_dealprice").get_text()
-converted_price = price[2:8]
-if(converted_price <'33,000'):
-    send_mail()
+def check_price:
+    page = requests.get(URL,headers=headers)
+    soup = BeautifulSoup(page.content,'html.parser') 
+    title = soup.find(id="productTitle").get_text()
+    print(title.strip())
+    price = soup.find(id="priceblock_dealprice").get_text()
+    converted_price = price[2:8]
+    if(converted_price <'33,000'):
+        send_mail()
 
 
 def send_mail():
@@ -34,6 +34,8 @@ def send_mail():
     )
     print('Email has been sent')
     server.quit()
+    
+check_price()
 
 
 
